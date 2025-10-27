@@ -5,6 +5,7 @@ import Icon from '@/components/ui/icon';
 import GameConstructor from '@/components/GameConstructor';
 import GameCatalog from '@/components/GameCatalog';
 import Profile from '@/components/Profile';
+import Community from '@/components/Community';
 import Instructions from '@/components/Instructions';
 
 const Index = () => {
@@ -54,7 +55,15 @@ const Index = () => {
               className="gap-2"
             >
               <Icon name="User" size={18} />
-              Мои упражнения
+              Личный кабинет
+            </Button>
+            <Button
+              variant={activeTab === 'community' ? 'default' : 'ghost'}
+              onClick={() => setActiveTab('community')}
+              className="gap-2"
+            >
+              <Icon name="Users" size={18} />
+              Сообщество
             </Button>
             <Button
               variant={activeTab === 'instructions' ? 'default' : 'ghost'}
@@ -165,6 +174,7 @@ const Index = () => {
         {activeTab === 'constructor' && <GameConstructor />}
         {activeTab === 'catalog' && <GameCatalog />}
         {activeTab === 'profile' && <Profile />}
+        {activeTab === 'community' && <Community />}
         {activeTab === 'instructions' && <Instructions />}
       </main>
 
