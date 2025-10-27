@@ -9,10 +9,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
+import ShareDialog from './ShareDialog';
 
 const Profile = () => {
   const { toast } = useToast();
   const [isEditing, setIsEditing] = useState(false);
+  const [shareDialogOpen, setShareDialogOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState<{id: number, title: string} | null>(null);
   const [profileData, setProfileData] = useState({
     name: 'Мария Петрова',
     role: 'Учитель начальных классов',
@@ -138,7 +141,14 @@ const Profile = () => {
                     <Button variant="outline" size="icon">
                       <Icon name="Edit" size={18} />
                     </Button>
-                    <Button variant="outline" size="icon">
+                    <Button 
+                      variant="outline" 
+                      size="icon"
+                      onClick={() => {
+                        setSelectedGame({id: game.id, title: game.title});
+                        setShareDialogOpen(true);
+                      }}
+                    >
                       <Icon name="Share2" size={18} />
                     </Button>
                     <Button variant="outline" size="icon">
@@ -324,6 +334,18 @@ const Profile = () => {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {selectedGame && (
+        <ShareDialog
+          open={shareDialogOpen}
+          onClose={() => {
+            setShareDialogOpen(false);
+            setSelectedGame(null);
+          }}
+          gameTitle={selectedGame.title}
+          gameId={selectedGame.id}
+        />
+      )}
     </div>
   );
 };

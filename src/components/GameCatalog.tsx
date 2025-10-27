@@ -4,9 +4,12 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import ShareDialog from './ShareDialog';
 
 const GameCatalog = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [shareDialogOpen, setShareDialogOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState<{id: number, title: string} | null>(null);
 
   const games = [
     {
@@ -172,8 +175,15 @@ const GameCatalog = () => {
                 <Icon name="Play" size={16} />
                 Открыть
               </Button>
-              <Button variant="outline" size="icon">
-                <Icon name="Copy" size={16} />
+              <Button 
+                variant="outline" 
+                size="icon"
+                onClick={() => {
+                  setSelectedGame({id: game.id, title: game.title});
+                  setShareDialogOpen(true);
+                }}
+              >
+                <Icon name="Share2" size={16} />
               </Button>
             </div>
           </Card>
@@ -186,6 +196,18 @@ const GameCatalog = () => {
           <h3 className="text-xl font-semibold mb-2">Ничего не найдено</h3>
           <p className="text-muted-foreground">Попробуйте изменить поисковый запрос</p>
         </div>
+      )}
+
+      {selectedGame && (
+        <ShareDialog
+          open={shareDialogOpen}
+          onClose={() => {
+            setShareDialogOpen(false);
+            setSelectedGame(null);
+          }}
+          gameTitle={selectedGame.title}
+          gameId={selectedGame.id}
+        />
       )}
     </div>
   );
