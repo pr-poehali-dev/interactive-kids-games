@@ -140,6 +140,10 @@ const Index = () => {
               <div className="grid md:grid-cols-4 gap-4">
                 {[
                   { emoji: '🎯', name: 'Викторина', count: '12' },
+                  { emoji: '💰', name: 'Миллионер', count: '5' },
+                  { emoji: '🔤', name: 'Найди слово', count: '10' },
+                  { emoji: '🎴', name: 'Найти пару', count: '18' },
+                  { emoji: '📅', name: 'Линейка', count: '7' },
                   { emoji: '🧩', name: 'Пазлы', count: '8' },
                   { emoji: '🎨', name: 'Раскраски', count: '15' },
                   { emoji: '📝', name: 'Тесты', count: '20' }

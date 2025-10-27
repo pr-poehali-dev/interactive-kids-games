@@ -128,6 +128,10 @@ const GameConstructor = () => {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="quiz">🎯 Викторина</SelectItem>
+                <SelectItem value="millionaire">💰 Кто хочет стать миллионером</SelectItem>
+                <SelectItem value="word-search">🔤 Найди слово</SelectItem>
+                <SelectItem value="pairs">🎴 Найти пару</SelectItem>
+                <SelectItem value="timeline">📅 Хронологическая линейка</SelectItem>
                 <SelectItem value="puzzle">🧩 Пазл</SelectItem>
                 <SelectItem value="coloring">🎨 Раскраска</SelectItem>
                 <SelectItem value="test">📝 Тест</SelectItem>

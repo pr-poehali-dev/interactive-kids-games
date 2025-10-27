@@ -64,6 +64,10 @@ const GamePreview = ({ open, onClose, gameName, gameType, questions }: GamePrevi
   const getGameTypeEmoji = () => {
     switch(gameType) {
       case 'quiz': return '🎯';
+      case 'millionaire': return '💰';
+      case 'word-search': return '🔤';
+      case 'pairs': return '🎴';
+      case 'timeline': return '📅';
       case 'puzzle': return '🧩';
       case 'coloring': return '🎨';
       case 'test': return '📝';
