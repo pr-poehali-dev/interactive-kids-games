@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
+import GamePreview from './GamePreview';
 
 interface Question {
   id: string;
@@ -29,6 +30,7 @@ const GameConstructor = () => {
     answers: ['', '', '', ''],
     correctAnswer: 0
   });
+  const [showPreview, setShowPreview] = useState(false);
 
   const handleAddQuestion = () => {
     if (!currentQuestion.text.trim()) {
@@ -88,10 +90,22 @@ const GameConstructor = () => {
           <h2 className="text-3xl font-bold">Конструктор игр</h2>
           <p className="text-muted-foreground">Создайте свою уникальную образовательную игру</p>
         </div>
-        <Button onClick={handleSaveGame} size="lg" className="gap-2">
-          <Icon name="Save" size={20} />
-          Сохранить игру
-        </Button>
+        <div className="flex gap-2">
+          <Button 
+            onClick={() => setShowPreview(true)} 
+            size="lg" 
+            variant="outline" 
+            className="gap-2"
+            disabled={questions.length === 0}
+          >
+            <Icon name="Eye" size={20} />
+            Предпросмотр
+          </Button>
+          <Button onClick={handleSaveGame} size="lg" className="gap-2">
+            <Icon name="Save" size={20} />
+            Сохранить игру
+          </Button>
+        </div>
       </div>
 
       <Card className="p-6 space-y-6">
@@ -235,6 +249,14 @@ const GameConstructor = () => {
           </div>
         </Card>
       )}
+
+      <GamePreview
+        open={showPreview}
+        onClose={() => setShowPreview(false)}
+        gameName={gameName || 'Моя игра'}
+        gameType={gameType}
+        questions={questions}
+      />
     </div>
   );
 };
